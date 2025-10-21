@@ -1,0 +1,57 @@
+# --------------------------
+# Python / AWS Glue / Lambda
+# --------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.eggs/
+build/
+dist/
+.DS_Store
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# AWS credentials & configs
+.aws/
+*.pem
+*.key
+*.crt
+credentials.json
+config.json
+
+# Terraform / CloudFormation
+.terraform/
+*.tfstate
+*.tfstate.backup
+terraform.tfvars
+
+# Jupyter or local notebooks
+.ipynb_checkpoints/
+*.ipynb
+
+# Logs / temporary files
+logs/
+*.log
+*.tmp
+*.bak
+
+# Data files
+*.parquet
+*.csv.zip
+*.sqlite
+data/output/
+tmp/
+
+# IDE / editor settings
+.vscode/
+.idea/
+*.code-workspace
+
+# OS files
+Thumbs.db
+.DS_Store
