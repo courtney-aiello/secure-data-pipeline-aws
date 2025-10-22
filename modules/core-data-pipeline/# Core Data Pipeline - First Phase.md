@@ -10,7 +10,7 @@
 
 **Steps Completed So Far:**
 - Architecture diagram uploaded
-- 🚧 Setting up S3 + CloudTrail + Athena
+- Setting up S3 + CloudTrail + Athena
 
 **Next Steps:**
 1. Create buckets: `caa304-raw-data`, `caa304-processed-data`, `caa304-cloudtrail-logs`
