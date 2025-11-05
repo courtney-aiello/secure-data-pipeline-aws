@@ -12,12 +12,11 @@
 - Architecture diagram uploaded
 - Setting up S3 + CloudTrail + Athena
 - CloudTrail logging verified with `PutObject` and `ListObjects` events
-- Set up Athena table
-- Athena sample query tested
+- Figure set up Athena table
+- Athena sample query
 
 
 **Next Steps:**
 1. Flatten and create view in Athena
 2. Query logs in Athena: who accessed what, and when
-3.
 
