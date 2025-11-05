@@ -19,4 +19,5 @@
 **Next Steps:**
 1. Flatten and create view in Athena
 2. Query logs in Athena: who accessed what, and when
+3.
 
