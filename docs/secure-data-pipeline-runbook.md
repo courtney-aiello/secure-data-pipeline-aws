@@ -23,7 +23,7 @@ Goal: establish a secure baseline pipeline that logs and audits all S3 activity.
 6. **Upload succeeded**, confirming that: sso-based CLI access works correctly, the bucket automatically applies KMS encrytion and that CloudTrail logs the PutObject event for later verification in Athena.
 7. **Validated** in Athena
 
-![S3 Flow Diagram](diagrams/s3_test.png)
+![S3 Flow Diagram](../diagrams/s3_test.png)
 
 ### Key Commands
 
