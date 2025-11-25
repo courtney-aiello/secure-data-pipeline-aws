@@ -47,3 +47,18 @@ S3 now recognizes a structured location for raw data uploads. Test proves that e
 
 ## Up next:
 Add a Lambda that checks every new S3 file by computing a SHA-256 hash and saving it as a provenance record to verify the file's integrity over time.
+
+## 11/25/2025:
+## Phase 2 — Lambda Provenance
+
+This Lambda function is triggered whenever a new file is added to my S3 bucket under the configured prefix. The S3 event tells the function which bucket the operation happened in and the full path (key) of the file that was uploaded.
+
+Lambda then downloads the file so that it has the contents in memory and can work with the actual data, not just the file name. It computes a SHA-256 hash to create a fingerprint of the file’s contents, which will change if the file is altered in any way.
+
+Then the function builds a provenance record in JSON format. This record includes metadata such as the bucket name, the object key, the content length, the S3 last-modified time, and a timestamp for when Lambda recorded the provenance. This JSON acts like a “receipt” proving the state of the file at the moment it arrived.
+
+Lambda stores this provenance JSON in a `provenance/` folder. This keeps provenance records separate from raw data while preserving a similar folder structure, making it easy to look up the integrity record for any given file.
+
+To avoid an infinite loop, the function checks whether the key starts with `provenance/`. If it does, Lambda skips processing that object, so it doesn’t try to hash and rewrite its own provenance JSON files over and over.
+
+I forgot about IAM permissions here, so it took a bit longer to wire up, but it works.
