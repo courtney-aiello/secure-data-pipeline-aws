@@ -62,3 +62,18 @@ Lambda stores this provenance JSON in a `provenance/` folder. This keeps provena
 To avoid an infinite loop, the function checks whether the key starts with `provenance/`. If it does, Lambda skips processing that object, so it doesn’t try to hash and rewrite its own provenance JSON files over and over.
 
 I forgot about IAM permissions here, so it took a bit longer to wire up, but it works.
+
+------------------------------------------------------------
+
+Provenance Flow
+
+This diagram illustrates the provenance workflow for raw file ingestion.
+Whenever a new object is uploaded to the `incoming/` prefix of the raw data
+bucket, S3 sends an `ObjectCreated` event that triggers the
+`secure-provenance-lambda` function.
+
+The Lambda retrieves the file, computes a SHA-256 fingerprint, builds a
+provenance metadata record, and writes a JSON file to the
+`provenance/` prefix.
+
+See: `diagrams/provenance-flow.png`
