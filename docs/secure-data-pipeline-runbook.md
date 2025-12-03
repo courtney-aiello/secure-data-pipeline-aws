@@ -42,7 +42,7 @@ ORDER BY eventTime DESC;
 ```
 
 
-### “How It Works”
+### How It Works
 S3 now recognizes a structured location for raw data uploads. Test proves that every object is encrypted at rest with my KMS key. Bucket-level key optimization is active (efficient, secure encryption). All operations used temporary, MFA-protected credentials, so no long-lived keys. Provides a known “good” test case for Athena queries and future Lambda integrity checks.
 
 ## Up next:
