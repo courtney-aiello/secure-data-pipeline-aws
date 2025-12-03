@@ -65,7 +65,7 @@ I forgot about IAM permissions here, so it took a bit longer to wire up, but it 
 
 ------------------------------------------------------------
 
-Provenance Flow
+### Provenance Flow
 
 This diagram illustrates the provenance workflow for raw file ingestion.
 Whenever a new object is uploaded to the `incoming/` prefix of the raw data
@@ -75,5 +75,8 @@ bucket, S3 sends an `ObjectCreated` event that triggers the
 The Lambda retrieves the file, computes a SHA-256 fingerprint, builds a
 provenance metadata record, and writes a JSON file to the
 `provenance/` prefix.
+
+![Provenance Flow Diagram](../diagrams/provenance-flow.png)
+
 
 See: `diagrams/provenance-flow.png`
