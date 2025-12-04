@@ -49,4 +49,4 @@ It:
 - Logs every write to S3 using CloudTrail
 - In the Lambda, it extracts metadata (bucket, key, user, IP, event time)
 - Computes file hashes for integrity verification
-![Provenance Flow Diagram](../diagrams/provenance-flow.png)
+![Provenance Flow Diagram](/diagrams/provenance-flow.png)
