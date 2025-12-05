@@ -80,3 +80,12 @@ provenance metadata record, and writes a JSON file to the
 
 
 See: `diagrams/provenance-flow.png`
+
+## 12/04/2025:
+## Phase 3 — Data Capture in CloudTrail + Athena
+For every S3 PutObject into the raw layer, CloudTrail logs events and we pull from it in Athena.
+This allows us to capture all the metadata for every S3 PutObject.
+In Athena we created a table from the metadata that the Lambda outputs and combined it with the CloudTrail events table to create
+one unifued view of the whole end-to-end provenance process in provenance_ledger. Gives us the who, what, when and where of all files.
+Had an issue with Athena table location, originally it was pointing to one single data directory, giving stale data. Updated CloudTrail
+ensuring all S3 event-level objects in the folder were being captured.
