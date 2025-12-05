@@ -20,9 +20,9 @@ Create S3 buckets for:
 	processed/ (Silver)
 	analytics/ (Gold)
 
-Add in Lambda functions
-Query with Athena
-Run Glue jobs
+- Add in Lambda functions
+- Setup and query with Athena
+- Setup and run Glue jobs
 
 ## Security Controls
 Encryption
