@@ -53,9 +53,11 @@ hashed by a Lambda function (SHA-256), and recorded as a JSON provenance record 
 Then CloudTrail logs the S3 PutObject event
 Added a provenance_ledger view in Athena. It combines Cloudtrail logs and the Lambda data into one table.
 This gives a detailed view of the chain of custody for every file that gets added in the pipeline.
+
 ![Provenance Flow Diagram](/diagrams/provenance-flow.png)
 
 ## CloudTrail Event Capture
-CloudTrail records PutObject events whenever a user or service uploads a file
+CloudTrail records PutObject events whenever a user or service uploads a file.
 Then an Athena table reads these logs and flattens them, also pulls in the provenance metadata in another table and combines to a unified provenance_ledger view.
+
 ![Data_Lineage_Flow](/diagrams/data_lineage.png)
