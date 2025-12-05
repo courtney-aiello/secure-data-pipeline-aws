@@ -76,8 +76,6 @@ The Lambda retrieves the file, computes a SHA-256 fingerprint, builds a
 provenance metadata record, and writes a JSON file to the
 `provenance/` prefix.
 
-![Provenance Flow Diagram](../diagrams/provenance-flow.png)
-
 
 See: `diagrams/provenance-flow.png`
 
@@ -89,8 +87,8 @@ In Athena we created a table from the metadata that the Lambda outputs and combi
 one unifued view of the whole end-to-end provenance process in provenance_ledger. Gives us the who, what, when and where of all files.
 Had an issue with Athena table location, originally it was pointing to one single data directory, giving stale data. Updated CloudTrail
 ensuring all S3 event-level objects in the folder were being captured.
-
-![Data Capture Diagram](../diagrams/data_lineage.png)
+**Fix: Update Athena LOCATION to the parent us-east-2/ folder
+(previously locked to /2025/10/22/)**
 
 
 See: `diagrams/data_lineage.png`
