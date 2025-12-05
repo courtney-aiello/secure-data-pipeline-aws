@@ -25,21 +25,21 @@ Query with Athena
 Run Glue jobs
 
 ## Security Controls
-Encryption -
+Encryption
 - S3 default encryption (SSE-KMS)
 - KMS-encrypted CloudTrail logs
 - Encrypted object-level hashing + signature storage in provenance layer
 
-Access Controls -
+Access Controls
 - IAM least-privilege policies for Glue, Athena, and Lambda
 - S3 bucket policies enforcing explicit principals
 - CloudTrail logging for all bucket read/write operations
 
-Monitoring -
+Monitoring
 - CloudTrail events tracked and parsed into Athena
 - SNS notifications for anomalies
 
-Data Integrity & Provenance -
+Data Integrity & Provenance
 - Hashing lambda captures SHA-256 for each file as soon as it lands
 - (S3 + Athena view) track: lineage
 
