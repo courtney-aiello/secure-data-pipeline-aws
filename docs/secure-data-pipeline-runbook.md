@@ -89,3 +89,8 @@ In Athena we created a table from the metadata that the Lambda outputs and combi
 one unifued view of the whole end-to-end provenance process in provenance_ledger. Gives us the who, what, when and where of all files.
 Had an issue with Athena table location, originally it was pointing to one single data directory, giving stale data. Updated CloudTrail
 ensuring all S3 event-level objects in the folder were being captured.
+
+![Data Capture Diagram](../diagrams/data_lineage.png)
+
+
+See: `diagrams/data_lineage.png`
