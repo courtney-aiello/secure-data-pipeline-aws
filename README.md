@@ -45,8 +45,17 @@ Data Integrity & Provenance -
 
 ## Data Provenance Layer
 This is the main objective of the project.
-It:
 - Logs every write to S3 using CloudTrail
 - In the Lambda, it extracts metadata (bucket, key, user, IP, event time)
 - Computes file hashes for integrity verification
+Every object uploaded to s3://caa304-raw-data/incoming/:
+hashed by a Lambda function (SHA-256), and recorded as a JSON provenance record under s3://caa304-raw-data/provenance/incoming/
+Then CloudTrail logs the S3 PutObject event
+Added a provenance_ledger view in Athena. It combines Cloudtrail logs and the Lambda data into one table.
+This gives a detailed view of the chain of custody for every file that gets added in the pipeline.
 ![Provenance Flow Diagram](/diagrams/provenance-flow.png)
+
+## CloudTrail Event Capture
+CloudTrail records PutObject events whenever a user or service uploads a file
+Then an Athena table reads these logs and flattens them, also pulls in the provenance metadata in another table and combines to a unified provenance_ledger view.
+![Data_Lineage_Flow](/diagrams/data_lineage.png)

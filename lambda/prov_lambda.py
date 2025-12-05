@@ -1,7 +1,7 @@
 import boto3
 import hashlib
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 
 s3 = boto3.client('s3')
 
@@ -13,7 +13,7 @@ def lambda_helper(event, context):
 
     # avoid loops on provenance objects
     if key.startswith('provenance/'):
-        return {"status": "skipped"}
+        return {"status": "skipped", "reason": "provenance object"}
 
      # download file so we can examine it and fingerprint it
     obj = s3.get_object(Bucket=bucket, Key=key)
@@ -24,12 +24,12 @@ def lambda_helper(event, context):
 
      # build the provenance json saving metadata about it
     provenance = {
-        "bucket": bucket,
-        "key": key,
-        "hash_sha256": hash_sha256,
-        "size_bytes": obj["ContentLength"],
+        "bucket_name": bucket,
+        "object_key": key,
+        "sha256": hash_sha256,
+        "file_size_bytes": obj["ContentLength"],
         "last_modified": obj["LastModified"].isoformat(),
-        "timestamp_recorded": datetime.utcnow().isoformat() + "Z"
+        "hashed_at": datetime.now(timezone.utc).isoformat()
     }
 
      # save json to s3 to encrypt it
@@ -38,8 +38,9 @@ def lambda_helper(event, context):
     s3.put_object(
         Bucket=bucket,
         Key=provenance_key,
-        Body=json.dumps(provenance, indent=2).encode("utf-8"),
-        ServerSideEncryption="aws:kms"
+        Body=(json.dumps(provenance) + "\n").encode("utf-8"),
+        ServerSideEncryption="aws:kms",
+        ContentType="application/json"
     )
 
 
